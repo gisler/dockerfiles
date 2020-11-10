@@ -1,4 +1,4 @@
-FROM rocker/shinyverse:4.0.2
+FROM rocker/shiny-verse:4.0.2
 ARG DEBIAN_FRONTEND=noninteractive
 RUN R -e 'install.packages(                                   \
     "DTSg",                                                   \
