@@ -12,7 +12,7 @@ RUN apt-get update                                                              
   sudo -u rstudio git config --global user.email gisler@users.noreply.github.com && \
   sudo -u rstudio git config --global core.editor nano                           && \
   sudo -u rstudio git config --global credential.helper 'cache --timeout=28800'  && \
-  rm -r /home/rstudio/.config/rstudio                                            && \
+  rm /home/rstudio/.config/rstudio/rstudio-prefs.json                            && \
   mkdir /etc/rstudio/keybindings
 COPY rstudio_bindings.json /etc/rstudio/keybindings/rstudio_bindings.json
 COPY rstudio-prefs.json    /etc/rstudio/rstudio-prefs.json
