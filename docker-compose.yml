@@ -5,6 +5,8 @@ services:
     build: "./geospatial"
     ports:
       - "8787:8787"
+    environment:
+      - PASSWORD=${PASSWORD}
     volumes:
       - ${SHARED}:/home/rstudio/shared
   shiny-verse:
@@ -12,4 +14,4 @@ services:
     ports:
       - "80:3838"
     volumes:
-      - ${SHARED}:/srv/shiny-server/
+      - ${SHARED}/shinyapps:/srv/shiny-server/
