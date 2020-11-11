@@ -13,5 +13,7 @@ services:
     build: "./shiny-verse"
     ports:
       - "80:3838"
+    environment:
+      - APPLICATION_LOGS_TO_STDOUT=false
     volumes:
       - ${SHARED}/shinyapps:/srv/shiny-server/
