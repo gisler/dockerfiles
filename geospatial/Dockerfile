@@ -16,4 +16,4 @@ RUN apt-get update                                                              
   mkdir /etc/rstudio/keybindings
 COPY rstudio_bindings.json /etc/rstudio/keybindings/rstudio_bindings.json
 COPY rstudio-prefs.json    /etc/rstudio/rstudio-prefs.json
-COPY rstudio-prefs.json    /home/rstudio/.config/rstudio
+COPY rstudio-prefs.json    /home/rstudio/.config/rstudio/rstudio-prefs.json
