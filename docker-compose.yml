@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  geospatial:
+    build: "./geospatial"
+    ports:
+      - "8787:8787"
+    volumes:
+      - ${SHARED}:/home/rstudio/shared
+  shiny-verse:
+    build: "./shiny-verse"
+    ports:
+      - "80:3838"
+    volumes:
+      - ${SHARED}:/srv/shiny-server/
