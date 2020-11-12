@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update                                                               && \
   apt-get install apt-utils -y                                                   && \
   apt-get install ne -y                                                          && \
-  R -e 'install.packages(                                                           \
+  Rscript -e 'install.packages(                                                     \
     "DTSg",                                                                         \
     repos = "https://mran.microsoft.com/snapshot/2020-07-16",                       \
     dependencies = TRUE                                                             \
