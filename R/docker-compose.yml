@@ -16,7 +16,7 @@ services:
     environment:
       - APPLICATION_LOGS_TO_STDOUT=false
     volumes:
-      - ${SHARED}/shinyapps:/srv/shiny-server/
+      - ${SHARED}/shinyapps:/srv/shiny-server
   postgis:
     build: "./postgis"
     ports:
