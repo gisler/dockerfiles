@@ -17,3 +17,11 @@ services:
       - APPLICATION_LOGS_TO_STDOUT=false
     volumes:
       - ${SHARED}/shinyapps:/srv/shiny-server/
+  postgis:
+    build: "./postgis"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${PASSWORD}
+    volumes:
+      - ${SHARED}/pgdata:/var/lib/postgresql/data
