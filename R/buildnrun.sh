@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mkdir -p $1/shinyapps
 mkdir -p $1/pgdata
