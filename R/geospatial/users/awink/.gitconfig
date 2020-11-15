@@ -1,0 +1,7 @@
+[user]
+        name = etechler
+        email = etechler@users.noreply.github.com
+[core]
+        editor = ne
+[credential]
+        helper = cache --timeout=28800

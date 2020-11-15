@@ -8,10 +8,9 @@ RUN apt-get update                                                              
     repos = "https://mran.microsoft.com/snapshot/2020-07-16",                       \
     dependencies = TRUE                                                             \
   )'                                                                             && \
-  sudo -u rstudio git config --global user.name gisler                           && \
-  sudo -u rstudio git config --global user.email gisler@users.noreply.github.com && \
-  sudo -u rstudio git config --global core.editor ne                             && \
-  sudo -u rstudio git config --global credential.helper 'cache --timeout=28800'
-COPY rstudio-prefs.json    /home/rstudio/.config/rstudio/rstudio-prefs.json
+  while read -r user pw;                                                            \
+  do                                                                                \
+    useradd -m -k users/$user -p $(openssl passwd -crypt $pw) $user;                \
+  done < users
 COPY rstudio-prefs.json    /etc/rstudio/rstudio-prefs.json
 COPY rstudio_bindings.json /etc/rstudio/keybindings/rstudio_bindings.json
