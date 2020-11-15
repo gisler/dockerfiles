@@ -8,6 +8,8 @@ services:
     environment:
       - PASSWORD=${PASSWORD}
     volumes:
+      - ${SHARED}:/home/awink/shared
+      - ${SHARED}:/home/ghepp/shared
       - ${SHARED}:/home/rstudio/shared
   shiny-verse:
     build: "./shiny-verse"
