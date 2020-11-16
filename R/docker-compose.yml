@@ -2,31 +2,40 @@ version: "3.8"
 
 services:
   geospatial:
+    image: geospatial-custom:4.0.2
+    container_name: geospatial-custom-4.0.2
     build:
       context: "./geospatial"
       args:
-        - USERS_PASSWORD=${USERS_PASSWORD}
+        - USERS_PASSWORD=${USERS_PASSWORD.?err}
     ports:
       - "8787:8787"
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=${PASSWORD.?err}
     volumes:
-      - ${SHARED}:/home/awink/shared
-      - ${SHARED}:/home/ghepp/shared
-      - ${SHARED}:/home/rstudio/shared
+      - ${SHARED.?err}:/home/awink/shared
+      - ${SHARED.?err}:/home/ghepp/shared
+      - ${SHARED.?err}:/home/rstudio/shared
+    restart: unless-stopped
   shiny-verse:
+    image: shiny-verse-custom:4.0.2
+    container_name: shiny-verse-custom-4.0.2
     build: "./shiny-verse"
     ports:
       - "80:3838"
     environment:
       - APPLICATION_LOGS_TO_STDOUT=false
     volumes:
-      - ${SHARED}/shinyapps:/srv/shiny-server
+      - ${SHARED.?err}/shinyapps:/srv/shiny-server
+    restart: unless-stopped
   postgis:
+    image: postgis-custom:12-3.0
+    container_name: postgis-custom-12-3.0
     build: "./postgis"
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_PASSWORD=${PASSWORD.?err}
     volumes:
-      - ${SHARED}/pgdata:/var/lib/postgresql/data
+      - ${SHARED.?err}/pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
