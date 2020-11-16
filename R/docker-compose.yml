@@ -7,15 +7,15 @@ services:
     build:
       context: "./geospatial"
       args:
-        - USERS_PASSWORD=${USERS_PASSWORD.?err}
+        - USERS_PASSWORD=${USERS_PASSWORD:?err}
     ports:
       - "8787:8787"
     environment:
-      - PASSWORD=${PASSWORD.?err}
+      - PASSWORD=${PASSWORD:?err}
     volumes:
-      - ${SHARED.?err}:/home/awink/shared
-      - ${SHARED.?err}:/home/ghepp/shared
-      - ${SHARED.?err}:/home/rstudio/shared
+      - ${SHARED:?err}:/home/awink/shared
+      - ${SHARED:?err}:/home/ghepp/shared
+      - ${SHARED:?err}:/home/rstudio/shared
     restart: unless-stopped
   shiny-verse:
     image: shiny-verse-custom:4.0.2
@@ -26,7 +26,7 @@ services:
     environment:
       - APPLICATION_LOGS_TO_STDOUT=false
     volumes:
-      - ${SHARED.?err}/shinyapps:/srv/shiny-server
+      - ${SHARED:?err}/shinyapps:/srv/shiny-server
     restart: unless-stopped
   postgis:
     image: postgis-custom:12-3.0
@@ -35,7 +35,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=${PASSWORD.?err}
+      - POSTGRES_PASSWORD=${PASSWORD:?err}
     volumes:
-      - ${SHARED.?err}/pgdata:/var/lib/postgresql/data
+      - ${SHARED:?err}/pgdata:/var/lib/postgresql/data
     restart: unless-stopped
